@@ -15,19 +15,18 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.title = "Live Photos"
+        
         setupCollectionView()
     
     }
     
     func setupCollectionView() {
         
-        self.collectionView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellID)
-        self.collectionView?.backgroundColor = UIColor.white
+        collectionView?.register(PhotoCollectionViewCell.self, forCellWithReuseIdentifier: cellID)
+        collectionView?.backgroundColor = UIColor.white
+        collectionView?.contentInset = UIEdgeInsets(top: 8, left: 8, bottom: 0, right: 8)
         
-        if let layout = collectionView?.collectionViewLayout as! UICollectionViewFlowLayout? {
-            
-            print("hello")
-        }
     }
     
     
@@ -41,19 +40,20 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell: UICollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath)
-        cell.backgroundColor = UIColor.red
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! PhotoCollectionViewCell
+        
         return cell
     }
     
 
     //MARK: FlowLayoutDelegate
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: self.view.bounds.width, height: 100)
+        let side: CGFloat = (collectionView.bounds.width / 2) - 12
+        return CGSize(width: side, height: side)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 5
+        return 6
     }
 }
 
