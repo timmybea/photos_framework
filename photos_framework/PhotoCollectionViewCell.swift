@@ -26,9 +26,10 @@ class PhotoCollectionViewCell: UICollectionViewCell {
     
     func setupCell() {
         addSubview(imageView)
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views:["v0": imageView]))
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views:["v0": imageView]))
-        imageView.image = UIImage(named: "homer_profile")
+        
+        addConstrainstswith(format: "H:|[v0]|", views: imageView)
+        addConstrainstswith(format: "V:|[v0]|", views: imageView)
+        //imageView.image = UIImage(named: "homer_profile")
 
     }
     
